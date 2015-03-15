@@ -12,12 +12,7 @@ public class main {
 
 		
 		int k=7;
-		BigInteger k_big = new BigInteger(""+k);
-		
-		Ph1_Precomputation.do_tables(k);
-		
 		/* Неправильно работает с (163, 151) - бесконечно вычисляет
-		 * 					      (25, 5) - выдает 125
 		 * 						  (125, 25) = 15625
 		 */
 		String sU = "263"; //263
@@ -26,14 +21,7 @@ public class main {
 		BigInteger u = new BigInteger(sU);
 		BigInteger v = new BigInteger(sV);
 		
-		
-		
-		//Главный цикл
-		BigInteger[] u_and_v= Ph3.main_loop(u, v, k_big);
-		
-		//4-ая фаза:
-		
-		BigInteger g = Ph4.NOD(u_and_v[0], u_and_v[1], k);
+		BigInteger g = K_ary_alg.gcd(u, v, k);
 		
 		System.out.println("gcd(" + sU + ", " + sV + ") = " + g);
 		
@@ -62,8 +50,6 @@ public class main {
 			System.out.print(Ph1_Precomputation.P[i] + " ");
 		}
 		*/
-
-		System.out.println("+++");
 		
 	}
 

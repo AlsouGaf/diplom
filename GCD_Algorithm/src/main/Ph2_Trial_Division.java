@@ -11,7 +11,7 @@ public class Ph2_Trial_Division {
 		BigInteger[] Div_and_Rem_u;
 		BigInteger[] Div_and_Rem_v;
 		
-		for (int i=0; i < k && P[i] !=null; i++){
+		for (int i=0; i < k && P[i] != null; i++){
 			Div_and_Rem_u = u.divideAndRemainder(P[i]);
 			Div_and_Rem_v = v.divideAndRemainder(P[i]);
 			while(Div_and_Rem_u[1].equals(BigInteger.ZERO) &&
