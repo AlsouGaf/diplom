@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.math.BigInteger;
 
+import main.Binary_alg;
 import main.EuclidOperation;
 
 import org.junit.Test;
@@ -117,6 +118,18 @@ public class NODTest {
 
 	}
 	
-	
+	@Test
+	public void test07() {
+		String sA = "105";
+		String sB = "70";
+		
+		BigInteger a = new BigInteger(sA);
+		BigInteger b = new BigInteger(sB);		
+		
+		BigInteger r = EuclidOperation.NOD(a, b);
+		
+		//assertTrue(r.equals(a.gcd(b)));
+		assertEquals("35", r.toString()); 
+	}
 
 }

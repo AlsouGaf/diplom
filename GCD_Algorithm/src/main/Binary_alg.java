@@ -9,7 +9,11 @@ public class Binary_alg {
 		BigInteger two = new BigInteger("2");
 		BigInteger t;
 		
+		int iter = 0;
 		while (!u.equals(BigInteger.ZERO) && !v.equals(BigInteger.ZERO)){
+			
+			iter++;
+			
 			if (u.mod(two).equals(BigInteger.ZERO)){
 				u = u.divide(two);
 			}
@@ -33,6 +37,8 @@ public class Binary_alg {
 		else{
 			t = u;
 		}
+		
+		System.out.println("count of iter = " + iter);
 		
 		return t;
 	}

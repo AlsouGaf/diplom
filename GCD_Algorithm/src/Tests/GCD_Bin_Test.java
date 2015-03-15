@@ -1,10 +1,12 @@
 package Tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigInteger;
 
 import main.Binary_alg;
+import main.K_ary_alg;
 
 import org.junit.Test;
 
@@ -95,5 +97,17 @@ public class GCD_Bin_Test {
 
 	}
 	
-	
+	@Test
+	public void test12() {
+		String sA = "105";
+		String sB = "70";
+		
+		BigInteger a = new BigInteger(sA);
+		BigInteger b = new BigInteger(sB);		
+		
+		BigInteger r = Binary_alg.gcd(a, b);
+		
+		//assertTrue(r.equals(a.gcd(b)));
+		assertEquals("35", r.toString()); 
+	}
 }

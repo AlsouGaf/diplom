@@ -58,6 +58,22 @@ public class K_ary_gcd_test {
 		assertEquals("25", r.toString()); 
 	}
 	
+	@Test
+	public void test12() {
+		String sA = "105";
+		String sB = "70";
+		
+		BigInteger a = new BigInteger(sA);
+		BigInteger b = new BigInteger(sB);
+		
+		int k = 7;		
+		
+		BigInteger r = K_ary_alg.gcd(a, b, k);
+		
+		//assertTrue(r.equals(a.gcd(b)));
+		assertEquals("35", r.toString()); 
+	}
+	
 	/*
 	@Test
 	public void test01() {

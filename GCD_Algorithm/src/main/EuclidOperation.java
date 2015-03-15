@@ -20,7 +20,11 @@ public static ResultEuclid generationRK (BigInteger _a, BigInteger _b){
 	BigInteger b = new BigInteger(_b.toString());
 	b.abs();
 	
+	int iter = 0;
+	
 	do{
+		iter++;
+		
 		resDel = a.divideAndRemainder(b);
 		result.k.add(resDel[0]);
 		result.r.add(resDel[1]);
@@ -30,6 +34,8 @@ public static ResultEuclid generationRK (BigInteger _a, BigInteger _b){
 		
 	}
 	while(!b.equals(BigInteger.ZERO));
+	
+	System.out.println("count of iter = " + iter);
 	
 	return result;
 }
