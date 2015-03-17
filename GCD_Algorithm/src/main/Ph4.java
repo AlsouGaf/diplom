@@ -4,12 +4,11 @@ import java.math.BigInteger;
 
 public class Ph4 {
 
-	public static BigInteger NOD(BigInteger u, BigInteger v, int k){
+	public static BigInteger NOD(BigInteger u, BigInteger v, int k, BigInteger g){
 		
 		BigInteger zero_big = BigInteger.ZERO;
 		BigInteger t;
-		BigInteger g = Ph2_Trial_Division.remove_com_div(u, v, Ph1_Precomputation.P, k);
-		
+		BigInteger g_temp = null;
 		if (v.equals(zero_big)){
 			t = u;
 		}
@@ -20,13 +19,17 @@ public class Ph4 {
 		BigInteger[] Div_and_Rem_t;
 		
 		for(int i=0; i < k && Ph1_Precomputation.P[i] != null; i++){
-			Div_and_Rem_t = t.divideAndRemainder(Ph1_Precomputation.P[i]);
+			/*Div_and_Rem_t = t.divideAndRemainder(Ph1_Precomputation.P[i]);
 			while(Div_and_Rem_t[1].equals(zero_big)){
 				t = Div_and_Rem_t[0];
 			}
-			g = t.multiply(g);
+			*/
+			while(t.mod(Ph1_Precomputation.P[i]).equals(zero_big)){
+				t = t.divide(Ph1_Precomputation.P[i]);
+			}
+			g_temp = t.multiply(g);
 		}
 		
-		return g;
+		return g_temp;
 	}
 }

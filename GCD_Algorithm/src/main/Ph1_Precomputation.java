@@ -17,6 +17,7 @@ public class Ph1_Precomputation {
 		
 		/************************/
 		//Пока заглушка:
+		
 		A = new BigInteger[k];
 		A[0] = null;
 		A[1] = BigInteger.ONE;
@@ -28,7 +29,7 @@ public class Ph1_Precomputation {
 		
 		/*
 		for (int a = 1; a < Math.sqrt(k)+1; a++){
-			for(int b = ; b < ; b++){
+			for(int b = 1; b < Math.sqrt(k)+1; b++){
 				
 			}
 		}

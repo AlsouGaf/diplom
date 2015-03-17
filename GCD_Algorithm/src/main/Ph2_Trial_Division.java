@@ -5,23 +5,24 @@ import java.math.BigInteger;
 public class Ph2_Trial_Division {
 
 
-	public static BigInteger remove_com_div(BigInteger u, BigInteger v, BigInteger[] P, int k){
+	public static Result_Ph2 remove_com_div(BigInteger u, BigInteger v, int k){
 		BigInteger g = BigInteger.ONE;
-		P = new BigInteger[k];
-		BigInteger[] Div_and_Rem_u;
-		BigInteger[] Div_and_Rem_v;
 		
-		for (int i=0; i < k && P[i] != null; i++){
-			Div_and_Rem_u = u.divideAndRemainder(P[i]);
-			Div_and_Rem_v = v.divideAndRemainder(P[i]);
-			while(Div_and_Rem_u[1].equals(BigInteger.ZERO) &&
-					Div_and_Rem_v[1].equals(BigInteger.ZERO)){
-				
-				u = Div_and_Rem_u[0];
-				v = Div_and_Rem_v[0];
-				g = g.multiply(P[i]);
+		Result_Ph2 result = new Result_Ph2();
+		
+		for (int i=0; i < k && Ph1_Precomputation.P[i] != null; i++){
+			
+			while(u.mod(Ph1_Precomputation.P[i]).equals(BigInteger.ZERO) && v.mod(Ph1_Precomputation.P[i]).equals(BigInteger.ZERO)){
+				u = u.divide(Ph1_Precomputation.P[i]);
+				v = v.divide(Ph1_Precomputation.P[i]);
+				g = g.multiply(Ph1_Precomputation.P[i]);
 			}
 		}
-		return g;
+		result.u = u;
+		result.v = v;
+		result.g = g;
+		
+		//return g;
+		return result;
 	}
 }

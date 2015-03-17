@@ -11,6 +11,7 @@ public class Ph3 {
 		
 		BigInteger k_div_2 = (k_big.divide(new BigInteger("2"))).negate();
 		
+		
 		BigInteger uu, vv, x, a, b, t, t1, t2, val_of_G_uu_big, val_of_G_vv_big, val_of_I_vv_big;
 		int iter = 0;
 		
@@ -38,6 +39,8 @@ public class Ph3 {
 				while (b.compareTo(k_div_2) == -1){
 					b = b.add(k_big);
 				}
+				
+				//System.out.println("a = "+ a + ", b = " + b);
 				
 				t1 = a.multiply(u);
 				t2 = b.multiply(v);

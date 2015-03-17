@@ -15,8 +15,8 @@ public class main {
 		/* Ќеправильно работает с (163, 151) - бесконечно вычисл€ет
 		 * 						  (125, 25) = 15625
 		 */
-		String sU = "263"; //263
-		String sV = "151"; //151
+		String sU = "152"; //263
+		String sV = "74"; //151
 		
 		BigInteger u = new BigInteger(sU);
 		BigInteger v = new BigInteger(sV);
