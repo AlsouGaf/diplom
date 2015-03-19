@@ -19,7 +19,7 @@ public class Ph1_Precomputation {
 		//Пока заглушка:
 		
 		A = new BigInteger[k];
-		A[0] = null;
+		/*A[0] = null;
 		A[1] = new BigInteger("1");
 		A[2] = new BigInteger("1");
 		A[3] = new BigInteger("2");
@@ -27,7 +27,7 @@ public class Ph1_Precomputation {
 		A[5] = new BigInteger("1");
 		A[6] = new BigInteger("1");
 		
-		/*
+		
 		
 		A = new BigInteger[k];
 		A[0] = null;
@@ -70,28 +70,42 @@ public class Ph1_Precomputation {
 		
 		BigInteger[][] X = new BigInteger[2*k1][k1];
 		
-		BigInteger a, b, a_1, b_a_1;
+		BigInteger a, b;
 		BigInteger k_big = new BigInteger(""+k);
 		
 		for (int j = 0; j < 2*k1; j++){
 			for(int i = 0; i < k1; i++){
-				a = new BigInteger(""+(i+1));
-				if (j < k1){
-					b = new BigInteger(""+(int)(j-k1)); //-3
-				}
-				else{
-					b = new BigInteger(""+(int)(j-(k1-1))); //-2
-				}
-				a_1 = a.modInverse(k_big);
-				b_a_1 = b.multiply(a_1);
-				//b_a_1_neg = b_a_1.negate();
-				X[j][i] = b_a_1.mod(k_big);
+				a = get_a(i);
+				b = get_b(j, k1);
+				X[j][i] = (b.multiply(a.modInverse(k_big))).mod(k_big);
+				A[X[j][0].intValue()] = get_a(0);
 			}
 		}
 		
-		
-		
-		/*System.out.println("X = ");
+		/******Попытка составить массив А*****/
+		for(int j = 0; j < 2*k1 && A[j] != null; j++){
+			for(int i = 0; i < k1; i++){
+				
+					// Текущие a и b 
+					BigInteger b1 = get_b(j, k1).abs();
+					BigInteger a1 = get_a(i);
+					
+					//a и b из таблицы А ???????????!!!!!
+					
+					BigInteger b2 = get_b(j, k1).abs();
+					BigInteger a2 = A[X[j][i].intValue()];
+					
+					BigInteger sum1 = a1.add(b1); 
+					BigInteger sum2 = a2.add(b2);
+					
+					if (sum1.compareTo(sum2) == -1){
+						A[X[j][i].intValue()] = get_a(i);
+					}
+			}
+		}
+		/**********************************/
+		/*
+		System.out.println("X = ");
 		
 		for(int j = 0; j < 2*k1; j++){
 			for(int i = 0; i < k1; i++){
@@ -125,5 +139,20 @@ public class Ph1_Precomputation {
 		}
 	}
 	
+	public static BigInteger get_a(int i){
+		BigInteger a = new BigInteger(""+(i+1));
+		return a;
+	}
 	
+	public static BigInteger get_b(int j, int k1){
+		BigInteger b;
+		if (j < k1){
+			b = new BigInteger(""+(int)(j-k1));
+		}
+		else{
+			b = new BigInteger(""+(int)(j-(k1-1)));
+		}
+		
+		return b;
+	}
 }

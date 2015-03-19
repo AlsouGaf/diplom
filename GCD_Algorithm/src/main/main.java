@@ -51,6 +51,12 @@ public class main {
 		}
 		*/
 		
+		System.out.println();
+		System.out.print("A = ");
+		for (int i = 0; i < k; i++){
+			System.out.print(Ph1_Precomputation.A[i] + " ");
+		}
+		
 	}
 
 }
