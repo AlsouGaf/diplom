@@ -67,27 +67,39 @@ public class Ph1_Precomputation {
 		*/
 		
 		int k1 = (int)Math.sqrt(k)+1;
-		/*
-		BigInteger[][] X = new BigInteger[2*k1][2*k1];
 		
-		BigInteger a_from = new BigInteger(""+ (int)-(Math.sqrt(k)+1));
-		BigInteger a_to = new BigInteger(""+ (int) Math.sqrt(k)+1);
+		BigInteger[][] X = new BigInteger[2*k1][k1];
 		
-		BigInteger b_from = new BigInteger(""+ (int)-(Math.sqrt(k)+1));
-		BigInteger b_to = new BigInteger(""+ (int) Math.sqrt(k)+1);
+		BigInteger a, b, a_1, b_a_1;
+		BigInteger k_big = new BigInteger(""+k);
 		
-		System.out.println("X = ");
-		
-		for(BigInteger a = a_from; a.compareTo(a_to) == -1; a.add(BigInteger.ONE)){
-			for(BigInteger b = b_from; b.compareTo(b_to) == -1; b.add(BigInteger.ONE)){
-				X[a.intValue()][b.intValue()] = ((b.multiply(a.modInverse(new BigInteger(""+k)))).mod(new BigInteger(""+k))).negate();
-				System.out.print(X[a.intValue()][b.intValue()]);
+		for (int j = 0; j < 2*k1; j++){
+			for(int i = 0; i < k1; i++){
+				a = new BigInteger(""+(i+1));
+				if (j < k1){
+					b = new BigInteger(""+(int)(j-k1)); //-3
+				}
+				else{
+					b = new BigInteger(""+(int)(j-(k1-1))); //-2
+				}
+				a_1 = a.modInverse(k_big);
+				b_a_1 = b.multiply(a_1);
+				//b_a_1_neg = b_a_1.negate();
+				X[j][i] = b_a_1.mod(k_big);
 			}
-			System.out.println();
 		}
 		
-		*/
 		
+		
+		/*System.out.println("X = ");
+		
+		for(int j = 0; j < 2*k1; j++){
+			for(int i = 0; i < k1; i++){
+				System.out.print(X[j][i] + " ");
+			}
+			System.out.println(" ");
+		}
+		*/
 		/************************/
 		
 		
