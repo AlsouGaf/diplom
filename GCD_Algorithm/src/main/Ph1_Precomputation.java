@@ -6,6 +6,7 @@ import java.math.BigInteger;
 public class Ph1_Precomputation {
 
 	public static BigInteger[] A;
+	public static BigInteger[] B;
 	public static int[] G;
 	public static int[] I;
 	public static BigInteger[] P;
@@ -17,8 +18,6 @@ public class Ph1_Precomputation {
 		
 		/************************/
 		//Пока заглушка:
-		
-		A = new BigInteger[k];
 		/*A[0] = null;
 		A[1] = new BigInteger("1");
 		A[2] = new BigInteger("1");
@@ -26,83 +25,55 @@ public class Ph1_Precomputation {
 		A[4] = new BigInteger("2");
 		A[5] = new BigInteger("1");
 		A[6] = new BigInteger("1");
-		
-		
-		
-		A = new BigInteger[k];
-		A[0] = null;
-		A[1] = new BigInteger("3");
-		A[2] = new BigInteger("2");
-		A[3] = new BigInteger("4");
-		A[4] = new BigInteger("3");
-		A[5] = new BigInteger("2");
-		A[6] = new BigInteger("3");
-		
-		A = new BigInteger[k];
-		A[0] = null;
-		A[1] = new BigInteger("3");
-		A[2] = new BigInteger("2");
-		A[3] = new BigInteger("2");
-		A[4] = new BigInteger("1");
-		A[5] = new BigInteger("1");
-		A[6] = new BigInteger("1");
-		
-		A = new BigInteger[k];
-		A[0] = null;
-		A[1] = new BigInteger("1");
-		A[2] = new BigInteger("1");
-		A[3] = new BigInteger("1");
-		A[4] = new BigInteger("1");
-		A[5] = new BigInteger("1");
-		A[6] = new BigInteger("1");
-		
-		A = new BigInteger[k];
-		A[0] = null;
-		A[1] = new BigInteger("-1");
-		A[2] = new BigInteger("-1");
-		A[3] = new BigInteger("-2");
-		A[4] = new BigInteger("-2");
-		A[5] = new BigInteger("-1");
-		A[6] = new BigInteger("-1");
 		*/
 		
-		int k1 = (int)Math.sqrt(k)+1;
+		int k1 = (int)Math.ceil(Math.sqrt(k))+1;
 		
-		BigInteger[][] X = new BigInteger[2*k1][k1];
+		A = new BigInteger[k];//2*k1
+		B = new BigInteger[k];//2*k1
+		
+		BigInteger[][] X = new BigInteger[k][k1]; //2*k1
 		
 		BigInteger a, b;
 		BigInteger k_big = new BigInteger(""+k);
 		
-		for (int j = 0; j < 2*k1; j++){
+		for (int j = 0; j < k; j++){ //2*k1
 			for(int i = 0; i < k1; i++){
 				a = get_a(i);
 				b = get_b(j, k1);
-				X[j][i] = (b.multiply(a.modInverse(k_big))).mod(k_big);
+				X[j][i] = ((b.multiply(a.modInverse(k_big))).negate()).mod(k_big);
 				A[X[j][0].intValue()] = get_a(0);
+				B[X[j][0].intValue()] = b;
 			}
 		}
 		
-		/******Попытка составить массив А*****/
-		for(int j = 0; j < 2*k1 && A[j] != null; j++){
+		/******Попытка составить массив А****/
+		for(int j = 0; j < k; j++){ //2*k1
 			for(int i = 0; i < k1; i++){
-				
+				if(A[j] != null && B[j] != null){
 					// Текущие a и b 
 					BigInteger b1 = get_b(j, k1).abs();
 					BigInteger a1 = get_a(i);
 					
-					//a и b из таблицы А ???????????!!!!!
+					//a и b из таблицы А
 					
-					BigInteger b2 = get_b(j, k1).abs();
+					BigInteger b2 = B[X[j][i].intValue()];
 					BigInteger a2 = A[X[j][i].intValue()];
 					
 					BigInteger sum1 = a1.add(b1); 
-					BigInteger sum2 = a2.add(b2);
+					if (a2 != null && b2 != null){
+						BigInteger sum2 = a2.add(b2.abs());
 					
-					if (sum1.compareTo(sum2) == -1){
-						A[X[j][i].intValue()] = get_a(i);
-					}
+					
+						if (sum1.compareTo(sum2) == -1){
+							A[X[j][i].intValue()] = a1;
+							B[X[j][i].intValue()] = b1;
+						}
+					}	
+				}
 			}
 		}
+		
 		/**********************************/
 		/*
 		System.out.println("X = ");

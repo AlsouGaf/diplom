@@ -11,12 +11,12 @@ public class main {
 	public static void main(String[] args) {
 
 		
-		int k=7;
-		/* Ќеправильно работает с (163, 151) - бесконечно вычисл€ет
-		 * 						  (125, 25) = 15625
-		 */
-		String sU = "152"; //263
-		String sV = "74"; //151
+		int k=97;
+
+		int k1 = (int)Math.ceil(Math.sqrt(k))+1;
+		
+		String sU = "263"; //263
+		String sV = "151"; //151
 		
 		BigInteger u = new BigInteger(sU);
 		BigInteger v = new BigInteger(sV);
@@ -25,7 +25,7 @@ public class main {
 		
 		System.out.println("gcd(" + sU + ", " + sV + ") = " + g);
 		
-		/*
+		
 		System.out.print("G = ");
 		for (int i = 0; i < k; i++){
 			System.out.print(Ph1_Precomputation.G[i] + " ");
@@ -49,14 +49,22 @@ public class main {
 		for (int i = 0; i < k; i++){
 			System.out.print(Ph1_Precomputation.P[i] + " ");
 		}
-		*/
+		
 		
 		System.out.println();
 		System.out.print("A = ");
-		for (int i = 0; i < k; i++){
+		for (int i = 0; i < k1; i++){
 			System.out.print(Ph1_Precomputation.A[i] + " ");
 		}
 		
+		System.out.println();
+		System.out.print("B = ");
+		for (int i = 0; i < k; i++){
+			System.out.print(Ph1_Precomputation.B[i] + " ");
+		}
+		System.out.println();
+		
+		System.out.println("k1 = " + k1);
 	}
 
 }
